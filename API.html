@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Trail Finder</h1>
+    <main>
+      <div class='searchPage'>
+    <section>
+      <form action="/action_page.php">
+        <select id="stateSelect">
+          <option value="arizona">Arizona</option>
+          <option value="california">California</option>
+        </select> 
+
+        <select>
+          <option value="dirtbike">Dirtbike</option>
+          <option value='atv'>ATV</option>
+        </select>
+
+        <select>
+          <option value="trail1">Trail Type1</option>
+          <option value='trail2'>Trail type2</option>
+        </select>
+        <input class='searchResults' type="button" value="submit">
+      </form> 
+    </section>
+    </div>
+
+    <div id='resultsContainer'>
+      <section id='map'></section>
+      results
+    </div>
+    </main>
+    
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="API.js"></script>
+    <script src="API.css"></script>
+  </body>
+</html>
