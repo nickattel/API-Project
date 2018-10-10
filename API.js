@@ -56,11 +56,12 @@ function displayResults(data) {
 }
 
 function initMap(lat, lng) {
-	let centerCoordinates = `{lat: ${lat}, lng: ${lng}}`;
-	console.log(centerCoordinates);
+	let centerCoordinatesLat = parseFloat(`${lat}`);
+	let centerCoordinatesLng = parseFloat(`${lng}`);
+	console.log(centerCoordinatesLat);
    map = new google.maps.Map(
       document.getElementById("map"), {
-      	center: centerCoordinates,
+      	center: {lat: centerCoordinatesLat, lng: centerCoordinatesLng},
       	zoom: 6
       });
 
