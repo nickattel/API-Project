@@ -1,12 +1,5 @@
 
-/*const mapsEndpoint = `https://maps.googleapis.com/maps/api/staticmap?parameters&key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8`;
-
-
-/*function getMapSearch(stateSelection, callback) {
-	const query = {
-		url: `https://maps.googleapis.com/maps/api/staticmap?center=${stateSelection}&zoom=14&size=400x400&key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8`
-	}
-}*/
+const mapsEndpoint = `https://maps.googleapis.com/maps/api/staticmap?parameters&key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8`;
 
 const coordinates = {
 	'arizona': {lat:32.6847145, lng:-114.4303838},
@@ -19,14 +12,16 @@ function stateResults(){
 		console.log("selectedState", event);
 		let currentState = $(event.currentTarget).val();
 		let location = coordinates[currentState];
-		console.log(location);
+		/*console.log(location);*/
 		console.log(location.lng);
 		getParks(location.lat, location.lng);
+		initMap(location.lat, location.lng);
 	});
 }
 
 function getParks(lat, lng) {
 	let endpoint = `https://brappdbv2.p.mashape.com/Parks?lat=${lat}&lng=${lng}`;
+	console.log(endpoint);
 	const apiKey = "iBuNlfS0WQE0llxo4VuGWsHuJBXMEVhlCUhD1YIC9xQ";
 	const mashapeKey = "GssC35GpK1mshqenE8zsZgU624c4p1YCc6ujsnOkHslujvfISE";
 	return fetch(endpoint, {
@@ -51,6 +46,7 @@ function displayResults(data) {
 		let resultHtml = `
 		<div>
 		<h3>${result.Name}</h3>
+		<p>${result.Desc}</p>
 		</div>
 		`;
 		results = results.concat(resultHtml);
@@ -59,12 +55,16 @@ function displayResults(data) {
   $('#resultsContainer').empty().html(results).removeClass('hidden');
 }
 
-/*function initMap() {
+function initMap(lat, lng) {
+	let centerCoordinates = `{lat: ${lat}, lng: ${lng}}`;
+	console.log(centerCoordinates);
    map = new google.maps.Map(
-      document.getElementById("map"), {zoom: 12, center: $(stateResults)});
-  renderMapResults(item);
-  $('map').html(results);
-}*/
+      document.getElementById("map"), {
+      	center: centerCoordinates,
+      	zoom: 6
+      });
+
+}
 /*
 function watchSubmit() {
   $('.js-search-form').submit(event => {

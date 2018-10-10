@@ -11,7 +11,7 @@
     <main>
       <div class='searchPage'>
     <section>
-      <form action="/action_page.php">
+      <form action="/action_page.php" class="js-search-form">
         <select id="stateSelect">
           <option value="arizona">Arizona</option>
           <option value="california">California</option>
@@ -32,10 +32,13 @@
     </section>
     </div>
 
-    <div id='resultsContainer'>
-      <section id='map'></section>
+    <div id='resultsContainer' class='hidden'>
       results
     </div>
+
+    <div id="map">
+    </div>
+
     </main>
     
     <script
@@ -43,5 +46,8 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script src="API.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8&callback=initMap">
+    </script>
   </body>
 </html>
