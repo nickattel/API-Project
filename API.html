@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title></title>
     <link href="API.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
   </head>
   <body>
     <h1>Trail Finder</h1>
@@ -13,32 +14,32 @@
     <section>
       <form action="/action_page.php" class="js-search-form">
         <select id="stateSelect">
+          <option value="Select a state!">Select a State!</option>
           <option value="arizona">Arizona</option>
           <option value="california">California</option>
           <option value="colorado">Colorado</option>
         </select> 
 
         <select>
-          <option value="dirtbike">Dirtbike</option>
-          <option value='atv'>ATV</option>
+          <option value="Select an experience level!">Select an experience level!</option>
+          <option value='Intermediate'>Intermediate</option>
+          <option value='Advanced'>Advanced</option>
+          <option value='Expert'>Expert</option>
         </select>
-
-        <select>
-          <option value="trail1">Trail Type1</option>
-          <option value='trail2'>Trail type2</option>
-        </select>
-        <input class='searchResults' type="button" value="submit">
+        <input class='searchReset' type="button" value="reset search">
       </form> 
     </section>
     </div>
 
     <div id='resultsContainer' class='hidden'>
-      results
+      
     </div>
 
-    <div id="map">
+    <div class='mapContainer'>
+      <div id="map">
+      </div>
     </div>
-
+    
     </main>
     
     <script
@@ -46,6 +47,8 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script src="API.js"></script>
+   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8&callback=initMap">
     </script>

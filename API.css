@@ -1,3 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #map {
-	height: 100%;
+	width: 60%;
+	height: 80vh;
+}
+
+body {
+  background: url(http://images.motorcycle-usa.com/photogallerys/2014ErzbergRodeo6.jpg) fixed;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-family: 'Aldrich', sans-serif;
+  text-shadow: 5px 5px 10px black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.js-search-form {
+  text-align: center;
+  border: 5px black;
+  padding-bottom: 20px;
+}
+
+#resultsContainer {
+	display: inline;
+	float: right;
+	width: 35%;
+	background-color: white;
+	border-radius: 7px;
+	text-align: center;
+}
+
+.mapConatiner {
+	display: inline;
+	float: left;
+	margin-top: 20px;
+	padding-left: 20px;
+}
+
+p {
+	padding-bottom: 20px;
+}
+
+ol {
+	list-style-position: inside;
 }

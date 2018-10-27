@@ -2,6 +2,7 @@
 const mapsEndpoint = `https://maps.googleapis.com/maps/api/staticmap?parameters&key=AIzaSyCgcDx6iigGOjg_AukchpQ75ghV0xQEEB8`;
 
 const coordinates = {
+	'Select a state!': {lat:33.4484, lng:-112.0740},
 	'arizona': {lat:32.6847145, lng:-114.4303838},
 	'california': {lat:37.1931243, lng:-123.796161},
 	'colorado': {lat:40.0234735, lng:-105.2683086}
@@ -33,20 +34,25 @@ function getParks(lat, lng) {
 	}).then(rawResult => {
 		return rawResult.json();
 	}).then(result => {
+		const trails = result.data;
 		console.log('result was successful');
-		console.dir(result.data);
-		displayResults(result.data);
+		console.dir(trails);
+		displayResults(trails);
+		markerLocations(trails);
 	});
 }
 
 function displayResults(data) {
+
 	let results = '';
 	for (let i = 0 ; i < data.length ; i++){
 		let result = data[i];
 		let resultHtml = `
 		<div>
-		<h3>${result.Name}</h3>
+		<ol type='A'>
+		<li><h3>${result.Name}</h3></li>
 		<p>${result.Desc}</p>
+		</ol>
 		</div>
 		`;
 		results = results.concat(resultHtml);
@@ -61,11 +67,45 @@ function initMap(lat, lng) {
 	console.log(centerCoordinatesLat);
    map = new google.maps.Map(
       document.getElementById("map"), {
-      	center: {lat: centerCoordinatesLat, lng: centerCoordinatesLng},
-      	zoom: 6
+      	center: {
+      		lat: centerCoordinatesLat, 
+      		lng: centerCoordinatesLng
+      	},
+      	zoom: 8
       });
+	}
 
+function markerLocations(data) {
+	let results = [];
+	for (let i = 0 ; i < data.length ; ++i){
+		let result = data[i];
+		let resultHtml = `{lat: ${result.Lat}, lng: ${result.Lng}},`
+		// results = results.concat(resultHtml);
+		results.push({ 
+			lat: parseFloat(result.Lat),
+			lng: parseFloat(result.Lng)
+		});
+	}
+	let locations = results;
+	
+	console.log(locations);
+
+	let labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+	let labelIndex = 0;
+
+   let markers = locations.map(function(location, i){
+   	return new google.maps.Marker({
+   		position: location,
+   		label: labels[labelIndex++ % labels.length]
+   	});
+   	console.log(markers)
+   });
+
+   let markerCluster = new MarkerClusterer(map, markers, 
+   	{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
+
 /*
 function watchSubmit() {
   $('.js-search-form').submit(event => {
